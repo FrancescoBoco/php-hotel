@@ -50,6 +50,8 @@ $hotels = [
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <!-- CND BOOTSTRAP  -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     </head>
     <body>
         <header>
@@ -57,11 +59,26 @@ $hotels = [
         </header>
 
         <mian>
-            <table>
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">parking</th>
+                        <th scope="col">vote</th>
+                        <th scope="col">distance_to_center</th>
+                    </tr>
+                </thead>
                 <tbody>
+
                     <?php foreach ($hotels as $index => $hotel) {
                     ?>
                     <tr>
+                        <th>
+                            <?php
+                            echo $index;
+                            ?> 
+                        </th>
                         <td>
                             <?php
                             echo $hotels[$index]['name'];
