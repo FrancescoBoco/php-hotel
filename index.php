@@ -41,6 +41,11 @@ $hotels = [
 
 ];
 
+
+if( isset($_GET['parcheggio']) ){
+    $checkbox = $_GET['parcheggio'];
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -54,14 +59,20 @@ $hotels = [
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     </head>
     <body>
-        <header>
-            
+        <header class="container">
+            <form action="" method="get">
+               Parcheggio? <input type="checkbox"  name="parcheggio" value="true" <?php if( isset($_GET['parcheggio']) ){ ?> checked <?php } ?> > 
+               
+                <button>Search</button>
+            </form>
         </header>
 
-        <mian>
+        <mian class="container">
+
             <table class="table table-striped table-hover">
                 <thead>
                     <tr>
+                        <th scope="col">Indice</th>
                         <th scope="col">Nome</th>
                         <th scope="col">Description</th>
                         <th scope="col">parking</th>
@@ -72,6 +83,9 @@ $hotels = [
                 <tbody>
 
                     <?php foreach ($hotels as $index => $hotel) {
+                       
+                        
+                        if(!isset($_GET['parcheggio']) || (isset($_GET['parcheggio']) && $hotel['parking'] == true)){
                     ?>
                     <tr>
                         <th>
@@ -81,35 +95,36 @@ $hotels = [
                         </th>
                         <td>
                             <?php
-                            echo $hotels[$index]['name'];
+                            echo $hotel['name'];
                             ?> 
                         </td>
 
                         <td>
                             <?php
-                            echo $hotels[$index]['description'];
+                            echo $hotel['description'];
                             ?> 
                         </td>
 
                         <td>
                             <?php
-                            echo $hotels[$index]['parking'];
+                            echo $hotel['parking'];
                             ?> 
                         </td>
                         <td>
                             <?php
-                            echo $hotels[$index]['vote'];
+                            echo $hotel['vote'];
                             ?> 
                         </td>
                         <td>
                             <?php
-                            echo $hotels[$index]['distance_to_center'];
+                            echo $hotel['distance_to_center'];
                             ?> 
                         </td>
                     </tr>
                     
                     <?php
                     }
+                }
                     ?>
                 </tbody>
             
